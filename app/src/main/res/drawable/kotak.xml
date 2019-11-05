@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <size
+        android:width="20dp"
+        android:height="20dp"
+        />
+
+    <gradient
+        android:angle="0"
+        android:endColor="#3C0102"
+        android:gradientRadius="@dimen/cardview_default_radius"
+        android:startColor="#720B0B"
+        android:type="sweep"
+        />
+
+</shape>

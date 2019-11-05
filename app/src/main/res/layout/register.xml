@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/jdlRegis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Register Akunmu"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/txtNama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Nama"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpNama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="textPersonName|text|textEmailAddress"
+                android:hint="Masukkan Nama" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Email"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Masukkan email" />
+
+            <TextView
+                android:id="@+id/txtPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Password"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Masukkan Password" />
+
+            <TextView
+                android:id="@+id/txtPass2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Konfirmasi Password"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/intPass2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Konfirmasi Password" />
+
+            <TextView
+                android:id="@+id/txtTgl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Tanggal Lahir"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpTgl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="Masukkan Tanggal Lahir" />
+
+            <TextView
+                android:id="@+id/txtAlamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Alamat"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpAlamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="textLongMessage"
+                android:hint="Masukkan Alamat" />
+
+            <TextView
+                android:id="@+id/txtTelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Nomor Telepon"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpTelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="phone|number"
+                android:hint="Masukkan Nomor" />
+
+            <TextView
+                android:id="@+id/txtIdentitas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Nomor Identitas"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/inpIdentitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:inputType="phone|number"
+                android:hint="Masukkan Nomor KTP/SIM" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/imgView"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.33"
+                    app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+
+                <Button
+                    android:id="@+id/browse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.34"
+                    android:text="browse"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.33"
+                    android:text="Masukkan pas foto dengan memegang kartu identitas"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
