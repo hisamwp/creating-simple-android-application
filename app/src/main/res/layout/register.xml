@@ -98,7 +98,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/intPass2"
+                android:id="@+id/inpPasskon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -107,27 +107,6 @@
                 android:ems="10"
                 android:inputType="textPassword"
                 android:hint="Konfirmasi Password" />
-
-            <TextView
-                android:id="@+id/txtTgl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Tanggal Lahir"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/inpTgl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:inputType="date"
-                android:hint="Masukkan Tanggal Lahir" />
 
             <TextView
                 android:id="@+id/txtAlamat"
@@ -161,7 +140,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/inpTelp"
+                android:id="@+id/inpNoTelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -182,7 +161,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/inpIdentitas"
+                android:id="@+id/inpNoKtp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -200,7 +179,7 @@
                 android:layout_gravity="center">
 
                 <ImageView
-                    android:id="@+id/imgView"
+                    android:id="@+id/inpFoto"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -226,12 +205,12 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/submitRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                />
+                android:text="Register" />
 
         </LinearLayout>
     </ScrollView>

@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+    <string name="text_title_notif">Fake Android Apps With Over &#160; </string>
+    <string name="text_description_notif">Fake Android Apps With Over 50,000 Installations Found on Google Play, Quick Heal Claims</string>
 </resources>

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.skuymppl.Database.DatabaseHelper;
+
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,11 +17,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Button btnRegister;
             EditText txtUser;
             EditText txtPass;
+            DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        db = new DatabaseHelper(this);
         txtUser = findViewById(R.id.email);
         txtPass = findViewById(R.id.password);
         btnLogin = findViewById(R.id.login);
@@ -34,7 +38,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login:
                 String username = txtUser.getText().toString();
                 String password = txtPass.getText().toString();
-
                 if(username.isEmpty()){
                     txtUser.setError("Silahkan masukkan username / email");
                 }
@@ -42,12 +45,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     txtPass.setError("Silahkan masukkan password");
                 }
                 else {
-                    Toast.makeText(this, "Selamat Datang\n" + username, Toast.LENGTH_SHORT).show();
-                    Intent homeIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(homeIntent);
-                    finish();
+                    String inputPass;
+                    String namaUser;
+                    //namaUser = db.selectUser(username);
+                    inputPass = db.selectPass(username);
+                    //Toast.makeText(this, "Selamat Datang\n" + inputPass, Toast.LENGTH_SHORT).show();
+                    if(password == inputPass) {
+                        Toast.makeText(this, "Selamat Datang\n" + username, Toast.LENGTH_SHORT).show();
+                        Intent homeIntent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(homeIntent);
+                        finish();
+                    }
                 }
-                break;
 
             case R.id.register:
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class );
