@@ -1,5 +1,6 @@
 package com.example.skuymppl.Database.model;
 
+
 public class User {
     public static final String TABLE_NAME = "user";
 
@@ -17,14 +18,14 @@ public class User {
 
     private int user_id;
     private String nama;
-    private String foto;
+    private byte[] foto;
     private String email;
     private String password;
     private String notelp;
     private String noktp;
     private String alamat;
-    private String ktp;
-    private String sim;
+    private byte[] ktp;
+    private byte[] sim;
     private String point;
 
     // Create table SQL query
@@ -32,21 +33,23 @@ public class User {
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_NAMA + " TEXT,"
-                    + COLUMN_FOTO + " TEXT,"
+                    + COLUMN_FOTO + " BLOB,"
                     + COLUMN_EMAIL + " TEXT,"
                     + COLUMN_PASS + " TEXT,"
                     + COLUMN_NOTELP + " TEXT,"
                     + COLUMN_NOKTP + " TEXT,"
                     + COLUMN_ALAMAT + " TEXT,"
-                    + COLUMN_KTP + " TEXT,"
-                    + COLUMN_SIM + " TEXT,"
+                    + COLUMN_KTP + " BLOB,"
+                    + COLUMN_SIM + " BLOB,"
                     + COLUMN_POINT + " INTEGER DEFAULT '0'"
                     + ")";
 
-    public User() {
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
-    public User(int id, String nama, String foto, String email, String password, String notelp, String noktp, String alamat, String ktp, String sim, String point) {
+    public User(int user_id, String nama, byte[] foto, String email, String password, String notelp, String noktp, String alamat, byte[] ktp, byte[] sim, String point) {
         this.user_id = user_id;
         this.nama = nama;
         this.foto = foto;
@@ -76,11 +79,11 @@ public class User {
         this.nama = nama;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
@@ -124,19 +127,19 @@ public class User {
         this.alamat = alamat;
     }
 
-    public String getKtp() {
+    public byte[] getKtp() {
         return ktp;
     }
 
-    public void setKtp(String ktp) {
+    public void setKtp(byte[] ktp) {
         this.ktp = ktp;
     }
 
-    public String getSim() {
+    public byte[] getSim() {
         return sim;
     }
 
-    public void setSim(String sim) {
+    public void setSim(byte[] sim) {
         this.sim = sim;
     }
 

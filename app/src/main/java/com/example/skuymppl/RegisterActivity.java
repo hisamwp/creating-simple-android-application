@@ -2,6 +2,7 @@ package com.example.skuymppl;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.skuymppl.Database.DatabaseHelper;
+
+import java.io.ByteArrayOutputStream;
+import java.sql.Blob;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -65,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submitRegister:
+                boolean error = false;
                 String nama = inpNama.getText().toString();
                 email = inpEmail.getText().toString();
                 String pass = inpPass.getText().toString();
@@ -72,9 +77,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 String alamat = inpAlamat.getText().toString();
                 String notelp = inpNotelp.getText().toString();
                 String noktp = inpNoktp.getText().toString();
-                String ktp = picturePath;
+                Bitmap ktp = BitmapFactory.decodeFile(picturePath);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                ktp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte imageInByte[] = stream.toByteArray();
 
-                if(nama.isEmpty()){
+                /*if(nama.isEmpty()){
                     inpNama.setError("Silahkan masukkan nama");
                 }
                 if(email.isEmpty()){
@@ -88,9 +96,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         inpPass.setError("Password adalah karakter berjumlah 8-12");
                     }
                 }
-                if(pass != passKonfirm){
-                    inpPassKon.setError("Password tidak sama");
-                }
+
                 if(alamat.isEmpty()){
                     inpAlamat.setError("Silahkan masukkan alamat lengkap anda");
                 }
@@ -104,14 +110,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         inpNoktp.setError("nomor tidak valid");
                     }
                 }
-                if(ktp.isEmpty()){
-                    Toast.makeText(this, "masukkan foto ktp anda" + ktp, Toast.LENGTH_SHORT).show();
-                }
 
-                db.insertUser(nama, email, pass, alamat, notelp, noktp, ktp);
-                Intent regisIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(regisIntent);
-                finish();
+                if(imageInByte.length == 0){
+                    Toast.makeText(this, "masukkan foto ktp anda" + ktp, Toast.LENGTH_SHORT).show();
+                }*/
+                if(!pass.equalsIgnoreCase(passKonfirm)){
+                    inpPassKon.setError("Password tidak sama");
+                } else if (!db.cekEmail(email)) {
+                    db.insertUser(nama, email, pass, alamat, notelp, noktp, imageInByte);
+                    Toast.makeText(this, "Berhail mendaftar", Toast.LENGTH_SHORT).show();
+                    Intent regisIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(regisIntent);
+                    finish();
+                }else {
+
+                    //Email exists with email input provided so show error user already exist
+                    Toast.makeText(this, "Gagal mendaftar, ada email yg sama", Toast.LENGTH_SHORT).show();
+                }
+                break;
 
             case R.id.browse:
                 Intent i = new Intent(
@@ -119,6 +135,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+                break;
         }
     }
 

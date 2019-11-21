@@ -10,6 +10,8 @@ import android.util.Log;
 import com.example.skuymppl.Database.model.Login;
 import com.example.skuymppl.Database.model.User;
 
+import java.sql.Blob;
+
 public class DatabaseHelper extends SQLiteOpenHelper{
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -27,8 +29,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         // create notes table
-        //db.execSQL(User.CREATE_TABLE);
-        db.execSQL(Login.CREATE_TABLE);
+        db.execSQL(User.CREATE_TABLE);
+        //db.execSQL(Login.CREATE_TABLE);
+        //Log.d("TERBUAT", "onClick: ");
 
     }
 
@@ -36,63 +39,69 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        //db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + Login.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
+        //db.execSQL("DROP TABLE IF EXISTS " + Login.TABLE_LOGIN);
 
         // Create tables again
         onCreate(db);
     }
 
-    public String selectUser(String email){
+    public User Authenticate(User user) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(User.TABLE_NAME,
-                new String[]{User.COLUMN_NAMA},
+        Cursor cursor = db.query(User.TABLE_NAME,// Selecting Table
+                new String[]{User.COLUMN_ID, User.COLUMN_EMAIL, User.COLUMN_PASS},//Selecting columns want to query
                 User.COLUMN_EMAIL + "=?",
-                new String[]{String.valueOf(email)}, null, null, null, null);
+                new String[]{user.getEmail()},//Where clause
+                null, null, null);
 
-        if (cursor != null)
-            cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
+            //if cursor has value then in user database there is user associated with this given email
+            User user1 = new User(cursor.getString(1), cursor.getString(2));
 
-        // prepare note object
-        String namaUser = cursor.getString(cursor.getColumnIndex(User.COLUMN_NAMA));
+            //Match both passwords check they are same or not
+            if (user.getPassword().equalsIgnoreCase(user1.getPassword())) {
+                return user1;
+            }
+        }
 
-        // close the db connection
-        cursor.close();
-
-        return namaUser;
+        //if user password does not matches or there is no record with that email then return @false
+        return null;
     }
 
-    public String selectPass(String email){
+    public Boolean cekEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(Login.TABLE_NAME,
-                new String[]{Login.COLUMN_PASS},
-                Login.COLUMN_EMAIL + "=?",
-                new String[]{email}, null, null, null, null);
+        Cursor cursor = db.query(User.TABLE_NAME,// Selecting Table
+                new String[]{User.COLUMN_ID, User.COLUMN_EMAIL, User.COLUMN_PASS},//Selecting columns want to query
+                User.COLUMN_EMAIL + "=?",
+                new String[]{email},//Where clause
+                null, null, null);
 
-        // prepare note object
-        String passUser = cursor.getString(cursor.getColumnIndex(Login.COLUMN_PASS));
+        if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
+            //if cursor has value then true
+            return true;
 
-        // close the db connection
-        cursor.close();
+            } else {
 
-        return passUser;
+            return false;
+        }
     }
 
-    public void insertUser(String nama, String email, String password, String alamat, String notelp, String noktp, String ktp) {
+
+    public void insertUser(String nama, String email, String password, String alamat, String notelp, String noktp, byte[] ktp) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        //values.put(User.COLUMN_NAMA, nama);
-        values.put(Login.COLUMN_EMAIL, email);
-        values.put(Login.COLUMN_PASS, password);
-        //values.put(User.COLUMN_ALAMAT, alamat);
-        //values.put(User.COLUMN_NOTELP, notelp);
-        //values.put(User.COLUMN_NOKTP, noktp);
-        //values.put(User.COLUMN_KTP, ktp);
+        values.put(User.COLUMN_NAMA, nama);
+        values.put(User.COLUMN_EMAIL, email);
+        values.put(User.COLUMN_PASS, password);
+        values.put(User.COLUMN_ALAMAT, alamat);
+        values.put(User.COLUMN_NOTELP, notelp);
+        values.put(User.COLUMN_NOKTP, noktp);
+        values.put(User.COLUMN_KTP, ktp);
 
-        db.insert(Login.TABLE_NAME, null, values);
+        long id = db.insert(User.TABLE_NAME, null, values);
 
         // close db connection
         db.close();

@@ -1,7 +1,7 @@
 package com.example.skuymppl.Database.model;
 
 public class Login {
-    public static final String TABLE_NAME = "login";
+    public static final String TABLE_LOGIN = "login";
 
     public static final String COLUMN_ID = "login_id";
     public static final String COLUMN_EMAIL = "email";
@@ -14,17 +14,13 @@ public class Login {
 
     // Create table SQL query
     public static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + "("
+            "CREATE TABLE " + TABLE_LOGIN + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_EMAIL + " TEXT,"
                     + COLUMN_PASS + " TEXT"
                     + ")";
 
-    public Login() {
-    }
-
-    public Login(int login_id, String email, String pass) {
-        this.login_id = login_id;
+    public Login(String email, String pass) {
         this.email = email;
         this.pass = pass;
     }
